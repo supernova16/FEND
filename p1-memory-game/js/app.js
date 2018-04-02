@@ -3,7 +3,7 @@
  */
 
 // 从 index.html 文本中获取 card list,并将卡片全部翻面，即 class 全改为为 card
-let cardlist = $('.deck').children().attr('class','card');
+const cardlist = $('.deck').children().attr('class','card');
 
 let cards = [];
 
@@ -80,7 +80,7 @@ function shuffle(array) {
 
  // 卡片重新变为隐藏状态
  function hide() {
-   this.className = 'card ';
+   this.className = 'card';
  }
 
 //当前状态为 打开 的卡片数组
@@ -92,22 +92,25 @@ function check() {
   if (open.length == 2) {
     if (open[0].firstElementChild.className == open[1].firstElementChild.className) {
       match.call(open[0]);
-      match.call(open[1]);
-      open.length = 0;
+      match.call(open[(1)]);
     } else {
-        open[0].className = 'animated swing card open show';
-        open[1].className = 'animated swing card open show';
-      setTimeout(function() {
-        hide.call(open[0]);
-        hide.call(open[1]);
-        open.splice(0,2);//使用删除头两个元素而不是直接清空数组
-      },500);
+        let opened1 = open[0];//把数组元素存到变量中，就可以避免延时函数还没执行完，数组已经清空的问题。
+        let opened2 = open[1];
+        opened1.className = 'animated swing card open show';
+        opened2.className = 'animated swing card open show';
+        setTimeout(function() {
+          hide.call(opened1);
+          hide.call(opened2);
+        },500);
     }
+    open = [];
   }
+
   //当全部卡片都匹配成功
-  if ($('.card.match').length == 16) {
+  if ($('.card.match').length == cards.length) {
     win();
   }
+
 }
 
 //步数和对应星星数
