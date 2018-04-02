@@ -69,16 +69,19 @@ h1 {
     transform: rotateY(0);
     background: #02b3e4;
     cursor: default;
+    pointer-events: none;
 }
 
 .deck .card.show {
     font-size: 33px;
+    pointer-events: none;
 }
 
 .deck .card.match {
     cursor: default;
     background: #02ccba;
     font-size: 33px;
+    pointer-events: none;
 }
 
 /*
@@ -133,7 +136,7 @@ h1 {
 #score-star li {
 
   font-size: 28px;
-  color: rgb(34, 233, 78);
+  color: rgb(16, 203, 57);
     list-style: none;
     display: inline-block;
 }
@@ -141,8 +144,13 @@ h1 {
 button {
   font-size: 28px;
   color: rgb(255, 255, 255);
-  background-color: rgb(34, 233, 78);
+  background-color: rgb(16, 203, 57);
   border-radius: 5px;
   cursor: pointer;
   margin-top: 20px;
 }
+
+
+/*
+ * Styles for the animate
+ */

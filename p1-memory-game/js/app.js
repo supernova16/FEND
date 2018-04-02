@@ -3,12 +3,12 @@
  */
 
 // 从 index.html 文本中获取 card list,并将卡片全部翻面，即 class 全改为为 card
-var cardlist = $('.deck').children().attr('class','card');
+let cardlist = $('.deck').children().attr('class','card');
 
-var cards = [];
+let cards = [];
 
 //将 card list 添加到 cards 数组中
-for(var i = 0; i < cardlist.length; i++) {
+for(let i = 0; i < cardlist.length; i++) {
   cards.push(cardlist[i]);
 }
 
@@ -30,9 +30,12 @@ cards.forEach(function(card) {
 
 
 
-// 洗牌函数来自于 http://stackoverflow.com/a/2450976
+/**
+* @description 洗牌函数来自于 http://stackoverflow.com/a/2450976
+* @param {Array} array - 需要被打乱的数组
+*/
 function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
+    let currentIndex = array.length, temporaryValue, randomIndex;
 
     while (currentIndex !== 0) {
         randomIndex = Math.floor(Math.random() * currentIndex);
@@ -63,7 +66,6 @@ function shuffle(array) {
    open.push(this);
    check();
    stepadd();
-
  });
 
  // 卡片变为显示状态
@@ -72,45 +74,45 @@ function shuffle(array) {
  }
 
  // 卡片变为匹配状态
- function match(card) {
-   card.className = 'card match';
+ function match() {
+   this.className = 'card match animated pulse';
  }
 
  // 卡片重新变为隐藏状态
- function hide(card) {
-   card.className = 'card';
+ function hide() {
+   this.className = 'card ';
  }
 
 //当前状态为 打开 的卡片数组
-var open = [];
+let open = [];
 
 //检查卡片匹配情况
 function check() {
   //每两张卡片检查一次匹配
   if (open.length == 2) {
     if (open[0].firstElementChild.className == open[1].firstElementChild.className) {
-      match(open[0]);
-      match(open[1]);
-      open.length = 0;//清空 open 数组
+      match.call(open[0]);
+      match.call(open[1]);
+      open.length = 0;
     } else {
+        open[0].className = 'animated swing card open show';
+        open[1].className = 'animated swing card open show';
       setTimeout(function() {
-        hide(open[0]);
-        hide(open[1]);
-        open.length = 0;
-      },300);
-
+        hide.call(open[0]);
+        hide.call(open[1]);
+        open.splice(0,2);//使用删除头两个元素而不是直接清空数组
+      },500);
     }
   }
   //当全部卡片都匹配成功
-  if ($('.card.match').length == 2) {
+  if ($('.card.match').length == 16) {
     win();
   }
-
 }
 
 //步数和对应星星数
-var steps = 0;
-var stars = 3;
+let steps = 0;
+let stars = 3;
 $('.moves').text('0');
 
 function stepadd() {
@@ -121,17 +123,13 @@ function stepadd() {
   }
   //根据步数修改星星数
   switch(moves) {
-    case 12:
+    case 16:
             $('.stars').find('li:eq(2)').children().attr('class','fa fa-star-o');
             stars = 2;
             break;
-    case 16:
+    case 22:
             $('.stars').find('li:eq(1)').children().attr('class','fa fa-star-o');
             stars = 1;
-            break;
-    case 20:
-            $('.stars').find('li:eq(0)').children().attr('class','fa fa-star-o');
-            stars = 0;
             break;
   }
 }
@@ -140,44 +138,36 @@ function stepadd() {
 
 
 //计时器
-var second = 0;
-var starttimer = setInterval(function() {
-    second++;
-    $('.second').text(second);
+let second = 0;
+let timer = setInterval(function() {
+  second++;
+  $('.second').text(second);
 },1000);
+
 
 
 //完成游戏
 function win() {
-  clearInterval(starttimer);
+  clearInterval(timer);
   $('.container').empty();
   $('.container').html("<div class='dialog'>\
-  <h1>You got it!</h1>\
+  <h1>Congratulations!</h1>\
   <p id = score-move></p><p id = score-time></p>\
   <ul id = score-star>\
-  <li><i></i></li>\
-  <li><i></i></li>\
-  <li><i></i></li></ul>\
+  <li><i class = 'fa fa-star'></i></li>\
+  <li><i class = 'fa fa-star'></i></li>\
+  <li><i class = 'fa fa-star'></i></li></ul>\
   <button>Play again!</button></div>");
   $('#score-move').text(`Moves: ${moves + 0.5} ` );
   $('#score-time').text(`Times: ${second} s`);
   switch(stars) {
-    case 3:
-           $('#score-star').find('li').children().attr('class','fa fa-star');
-           break;
     case 2:
            $('#score-star').find('li:eq(2)').children().attr('class','fa fa-star-o');
            break;
     case 1:
            $('#score-star').find('li:eq(2)').children().attr('class','fa fa-star-o');
            $('#score-star').find('li:eq(1)').children().attr('class','fa fa-star-o');
-
            break;
-    case 0:
-           $('#score-star').find('li').children().attr('class','fa fa-star-o');
-           break;
-
-
   }
   $('button').click(function(){location.reload();});
 }
