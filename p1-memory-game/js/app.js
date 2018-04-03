@@ -68,17 +68,23 @@ function shuffle(array) {
    stepadd();
  });
 
- // 卡片变为显示状态
+ /**
+* @description 卡片变为打开并显示状态
+*/
  function show() {
    this.className = 'card open show';
  }
 
- // 卡片变为匹配状态
+ /**
+ * @description 卡片变为匹配状态
+ */
  function match() {
    this.className = 'card match animated pulse';
  }
 
- // 卡片重新变为隐藏状态
+ /**
+* @description 卡片重新变为隐藏状态
+*/
  function hide() {
    this.className = 'card';
  }
@@ -86,10 +92,12 @@ function shuffle(array) {
 //当前状态为 打开 的卡片数组
 let open = [];
 
-//检查卡片匹配情况
+/**
+* @description 检查卡片匹配状态
+*/
 function check() {
   //每两张卡片检查一次匹配
-  if (open.length == 2) {
+  if (open.length === 2) {//当数字与数字进行匹配时，使用严格比较运算符
     if (open[0].firstElementChild.className == open[1].firstElementChild.className) {
       match.call(open[0]);
       match.call(open[(1)]);
@@ -118,6 +126,9 @@ let steps = 0;
 let stars = 3;
 $('.moves').text('0');
 
+/**
+* @description 步数和星星数增加
+*/
 function stepadd() {
   steps ++;
   moves = steps / 2;
@@ -149,7 +160,9 @@ let timer = setInterval(function() {
 
 
 
-//完成游戏
+/**
+* @description 完成游戏时
+*/
 function win() {
   clearInterval(timer);
   $('.container').empty();
