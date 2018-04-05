@@ -15,14 +15,16 @@ That' all. Play it right now!
 
 You could play the game on your computer.
 
-1. Clone this repo
+1. Download or Clone
 
-Click the Fork button, or copy and paste this code to the termimal.
+You can download ZIP or clone this repo.
 
 ```
 $ git clone https://github.com/supernova16/FEND/tree/master/p2-arcade-game-clone
 ```
 
-2. Open the local `index.html` file in browser.
+2. Open `index.html`
+
+Open the local `index.html` file in browser.
 
 Now you can start it.
