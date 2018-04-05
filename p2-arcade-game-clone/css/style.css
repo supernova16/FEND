@@ -1,3 +1,32 @@
 body {
     text-align: center;
+    background-color: rgb(16, 81, 170);
+}
+
+header {
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  margin：auto;
+
+  font-size: 25px;
+  font-family: 'Press Start 2P', cursive;
+  color: rgb(255, 255, 255);
+}
+
+h1 {
+  font-size: 30px;
+
+}
+
+canvas {
+  padding:60px 0px 0px 0px;
+}
+
+.info {
+  position: absolute;
+  top: 10; left: 0; bottom: 0; right: 0;
+  margin：auto;
+  font-size: 10;
+  font-family: 'Press Start 2P', cursive;
+  color: rgb(255, 255, 255);
 }

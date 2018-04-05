@@ -19,6 +19,7 @@ var Engine = (function(global) {
         canvas = doc.createElement('canvas'),
         ctx = canvas.getContext('2d'),
         lastTime;
+        won = false;
 
     canvas.width = 505;
     canvas.height = 606;
@@ -64,7 +65,36 @@ var Engine = (function(global) {
      */
     function update(dt) {
         updateEntities(dt);
-        // checkCollisions();
+        checkCollisions();
+        checkWinning();
+    }
+
+    /**
+     * 对 player 和 enemy 进行碰撞检测
+     *
+     */
+    function checkCollisions() {
+      allEnemies.forEach(function(enemy) {
+        if (enemy.y === player.y && enemy.x > player.x - 60 && enemy.x < player.x + 50) {
+          player.reset();
+          alert('You crashed！');
+        }
+      });
+    }
+
+    /**
+     * 对 player 进行胜利检测
+     *
+     */
+    function checkWinning() {//第一次check更改won状态，第二次再执行won动作
+      if (won === true) {
+         won = false;
+         alert("You Won!   Restart!");
+         player.reset();
+       }
+       if (player.y <= 65) {
+         won = true;
+      }
     }
 
     /* 这个函数会遍历在 app.js 定义的存放所有敌人实例的数组，并且调用他们的 update()
@@ -87,6 +117,7 @@ var Engine = (function(global) {
         /* 这个数组保存着游戏关卡的特有的行对应的图片相对路径。 */
         var rowImages = [
                 'images/water-block.png',   // 这一行是河。
+                'images/grass-block.png',//插了一行草
                 'images/stone-block.png',   // 第一行石头
                 'images/stone-block.png',   // 第二行石头
                 'images/stone-block.png',   // 第三行石头
@@ -121,6 +152,8 @@ var Engine = (function(global) {
         });
 
         player.render();
+
+
     }
 
     /* 这个函数现在没干任何事，但是这会是一个好地方让你来处理游戏重置的逻辑。可能是一个
