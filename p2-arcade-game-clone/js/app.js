@@ -4,7 +4,7 @@ const offset = 15;
 
 // 这是我们的玩家要躲避的敌人
 let Enemy = function(x,row,speed) {
-  n = 1;
+  let n = 1;
   switch (row) {
     case 1:
       n = 2;
