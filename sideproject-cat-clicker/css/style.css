@@ -1,24 +1,45 @@
 body {
   text-align: center;
   font-size: 30px;
+
+
 }
 
 header {
   font-size: 40px;
   padding-top: 30px;
-  padding-bottom: 40px;
+  padding-bottom: 20px;
 }
 
+/*
+container
+ */
+.container {
+  display: flex;
+  align-items:stretch;
+  flex-wrap: wrap;
+
+}
+
+
+/*
+cat card
+ */
 .cat-container {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items:baseline;
   align-content:center;
+  border: 1px solid rgb(8, 8, 7);
+  margin:5px;
+  width:600px;
 }
 
 .cat-card {
   margin: 10px 10px;
+  display:none;
 }
 
 .cat-name {
@@ -26,9 +47,15 @@ header {
 }
 
 img {
-  width: 300px;
+  width: 500px;
   cursor: pointer;
 }
+
+/*
+img:hover {
+  transform: scale(1.1);
+}
+*/
 
 .click-status {
   margin: 10px 0px;
@@ -37,4 +64,35 @@ img {
 #click-num {
   font-size: 40px;
   color: rgb(242, 140, 19);
+}
+
+
+/*
+cat nav
+ */
+.cat-nav {
+  width: 250px;
+  margin-left: 80px;
+  margin-right: 10px;
+}
+
+#cat-list {
+  pading:10px;
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin:0px;
+}
+
+#cat-list li{
+  border: 1px solid rgb(8, 8, 7);
+  margin: 5px;
+  padding: 5px;
+  cursor: pointer;
+  font-size: 20px;
+
+}
+
+#cat-list li:hover{
+  background-color: rgb(240, 198, 105);
 }

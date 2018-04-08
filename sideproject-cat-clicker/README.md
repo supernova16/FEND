@@ -1,6 +1,6 @@
 # Cat Clicker
 
-
+这个项目最终是以 MVC 模式写了一个 猫图像 点击网页。
 
 ## Cat Clicker 项目初始要求
 
@@ -68,3 +68,11 @@
 
 - 点击列表中的猫名称时，猫显示区域应该更新以显示所选的猫的数据。
 - 猫区域内的点击数应该对每只猫具有唯一性，并且应该在点击猫的图片时增加。
+
+![](assets/README-43f49.png)
+
+- 在`app.js`中，根据已存在的 cat 实例，在 DOM 中添加 cat list
+- 对 cat list 进行事件监听，被点击到的 cat 实例，对应的 cat card 显示（默认隐藏）
+- CSS 中使用了两层嵌套 flex 布局
+
+![](assets/README-c8315.png)
