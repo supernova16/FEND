@@ -38,11 +38,14 @@
 
 
 ![](assets/README-13d0e.png)
+![](assets/README-812f0.png)
 
 - 使用了 flex 进行 CSS 布局
 - 彻底改写了`appp.js`，使用 类 来进行 cat 实例的添加
+- 可扩展
 
 ![](assets/README-f620a.png)
+
 
 ### V1.0
 
