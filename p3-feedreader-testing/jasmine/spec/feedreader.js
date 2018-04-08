@@ -109,7 +109,7 @@ $(function() {
 
         $('.feed').empty();
         loadFeed(0, function() {
-          originalFeed = $('.feed').find("h2").text();
+          originalFeed = $('.feed').html();
 
           loadFeed(1, function() {
             done();
@@ -118,7 +118,7 @@ $(function() {
       },15000);//由于 http://cdc.tencent.com/feed/ 的延迟，对默认的超时时间设置大一些
 
       it('content will be changed when load a new feed', function(done) {
-        newFeed = $('.feed').find("h2").text();
+        newFeed = $('.feed').html();
         expect(originalFeed).not.toEqual(newFeed);
         done();
       });
