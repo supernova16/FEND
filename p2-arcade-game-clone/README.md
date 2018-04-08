@@ -11,7 +11,13 @@ Frogger is a classic arcade game. Here is a clonal demo.
 
 That' all. Play it right now!
 
-## Load and Start
+## Start Play
+
+### Online
+
+Click [here](https://supernova16.github.io/FEND/p2-arcade-game-clone/) to play this game online!
+
+### Local
 
 You could play the game on your computer.
 

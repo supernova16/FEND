@@ -15,3 +15,8 @@ It is a memory game (matching game) completed by myself.
 - find the same cards
 - When all the cards match, you win
 - you can restart at any times
+
+## Play online
+
+Click [here](https://supernova16.github.io/FEND/p1-memory-game/) to play this game online.
+Have fun!
