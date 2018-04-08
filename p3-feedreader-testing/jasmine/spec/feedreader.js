@@ -26,9 +26,14 @@ $(function() {
          * 编写一个测试遍历 allFeeds 对象里面的所有的源来保证有链接字段而且链接不是空的。
          */
         it('the url of all feed are defined and not null', function() {
+
+          var regularExpressionUrl =
+          /^((ht|f)tps?):\/\/([\w\-]+(\.[\w\-]+)*\/)*[\w\-]+(\.[\w\-]+)*\/?(\?([\w\-\.,@?^=%&:\/~\+#]*)+)?/;
+          // 检查 URL 格式是否正确的正规表达式
           allFeeds.forEach(function(feed) {
             expect(feed.url).toEqual(jasmine.anything());
             expect(feed.url).not.toBe('');
+            expect(feed.url).toMatch(regularExpressionUrl); // 检查格式
 
           });
         });
@@ -117,10 +122,9 @@ $(function() {
         });
       },15000);//由于 http://cdc.tencent.com/feed/ 的延迟，对默认的超时时间设置大一些
 
-      it('content will be changed when load a new feed', function(done) {
+      it('content will be changed when load a new feed', function() {
         newFeed = $('.feed').html();
         expect(originalFeed).not.toEqual(newFeed);
-        done();
       });
 
       afterEach(function() {
