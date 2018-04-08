@@ -4,24 +4,35 @@ The goal of this project was to use Jasmine to test a given Feedreader web appli
 
 ## Test Suites
 
-RSS Feeds:
+I modified `jasmine/spec/feeedreader.js` in order to test the following:
 
-- Test feeds are defined
-- Test feed URLs are defined and not empty
-- Test feed names are defined and not empty
+- RSS Feeds:
 
-The Menu:
+  - Test feeds are defined
+  - Test feed URLs are defined and not empty
+  - Test feed names are defined and not empty
 
-- Test the menu element is hidden by default
-- Test menu icon appears on click, and hides when click again
+- The Menu:
 
-Initial RSS Entry:
+  - Test the menu element is hidden by default
+  - Test menu icon appears on click, and hides when click again
 
-- Test at least one entry displays on load after async call
+- Initial RSS Entry:
 
-RSS Entry Change:
+  - Test at least one entry displays on load after async call
 
-- Test RSS entry changes on menu select
+- RSS Entry Change:
+
+  - Test RSS entry changes on menu select
+
+
+## Online testing
+
+You can click this url to view the testing online: https://supernova16.github.io/FEND/p3-feedreader-testing/.
+
+A successful test will display:
+
+![](http://p0837nnqr.bkt.clouddn.com/UC20180408_204816.png)
 
 
 
