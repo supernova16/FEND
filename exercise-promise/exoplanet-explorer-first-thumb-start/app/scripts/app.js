@@ -32,6 +32,7 @@ Instructions:
     for (var d in data) {
       pT[d] = data[d];
     }
+    //console.log(pT);
     home.appendChild(pT);
   }
 
@@ -64,6 +65,18 @@ Instructions:
 
     Your code goes here!
      */
-    // getJSON('../data/earth-like-results.json')
+    getJSON('../data/earth-like-results.json')
+    .then(function(response) {
+      addSearchHeader(response.query);
+      return getJSON(response.results[0]);
+    })
+    .catch(function() {
+      throw Error('Search Request Error');
+    })
+    .then(createPlanetThumb)//传入参数就是上个.then的返回值，所以可以直接写函数名
+    .catch(function(e) {
+      addSearchHeader('unknown');
+      console.log(e);
+    });
   });
 })(document);
