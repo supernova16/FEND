@@ -624,6 +624,7 @@
         }, function(results, status) {
           if (status === google.maps.places.PlacesServiceStatus.OK) {
             createMarkersForPlaces(results);
+            console.log(results);
           }
         });
       }
@@ -681,6 +682,7 @@
         if (status === google.maps.places.PlacesServiceStatus.OK) {
           // Set the marker property on this infowindow so it isn't created again.
           infowindow.marker = marker;
+          console.log(marker);
           var innerHTML = '<div>';
           if (place.name) {
             innerHTML += '<strong>' + place.name + '</strong>';
@@ -720,7 +722,7 @@
 
     <script async defer
         src=
-        "https://maps.googleapis.com/maps/api/js?libraries=places,geometry,drawing&key=MYAPIKEY&v=3&callback=initMap">
+        "https://maps.googleapis.com/maps/api/js?libraries=places,geometry,drawing&key=AIzaSyA-umRssW3-ooVBvmPAkp_RsgqwKfEhzz0&v=3&callback=initMap">
     </script>
 
   </body>

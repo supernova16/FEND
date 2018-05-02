@@ -462,6 +462,7 @@
           }
           var destination = address;
           var mode = document.getElementById('mode').value;
+          console.log('current mode is' + mode);
           // Now that both the origins and destination are defined, get all the
           // info for the distances between them.
           distanceMatrixService.getDistanceMatrix({
@@ -497,6 +498,7 @@
               // The distance is returned in feet, but the TEXT is in miles. If we wanted to switch
               // the function to show markers within a user-entered DISTANCE, we would need the
               // value for distance, but for now we only need the text.
+              console.log(element);
               var distanceText = element.distance.text;
               // Duration value is given in seconds so we make it MINUTES. We need both the value
               // and the text.
@@ -516,6 +518,7 @@
                 // the marker, when the big infowindow opens
                 markers[i].infowindow = infowindow;
                 google.maps.event.addListener(markers[i], 'click', function() {
+                  console.log('click it');
                   this.infowindow.close();
                 });
               }
@@ -530,7 +533,7 @@
 
     <script async defer
         src=
-        "https://maps.googleapis.com/maps/api/js?libraries=geometry,drawing&key=MYAPIKEY&v=3&callback=initMap">
+        "https://maps.googleapis.com/maps/api/js?libraries=geometry,drawing&key=AIzaSyA-umRssW3-ooVBvmPAkp_RsgqwKfEhzz0&v=3&callback=initMap">
     </script>
 
   </body>
