@@ -1,0 +1,15 @@
+{
+  "name": "p4-neiberhood-map",
+  "version": "1.0.0",
+  "description": "还是改名叫 去香港买电玩好了",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "request": "^2.85.0"
+  }
+}
