@@ -2,13 +2,13 @@ let shops = [];
 
 fetch('data/michelin_shanghai.json')
 .then(res => res.json())
-.then(results => {
+.then(function(results) {
   shops = results.michelin_shanghai;
   for (shop of shops) {
     getPlaceDetails(shop);
     }
+  creatMarkers(shops);
 })
-.then(creatMarkers())//这里为什么不调用函数
 .catch(err => console.log(err));
 
 function getPlaceDetails(shop) {
@@ -41,11 +41,12 @@ function initMap() {
 
 const markers = [];
 
-function creatMarkers() {
-  for(let i = 0; i < shops.length; i++) {
-    let lng = shops[i].lng;
-    let lat = shops[i].lat;
-    console.log(lng);
+function creatMarkers(places) {
+  console.log(places)//Array
+  for(let i = 0; i < places.length; i++) {
+    let lng = places[i].lng;
+    let lat = places[i].lat;
+    console.log(lng);//undefined?
     const marker = new AMap.Marker({
         icon: "http://webapi.amap.com/theme/v1.3/markers/n/mark_b.png",
         position: [lng, lat]
