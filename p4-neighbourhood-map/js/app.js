@@ -7,7 +7,6 @@ fetch('data/michelin_shanghai.json')
   for (shop of shops) {
     getPlaceDetails(shop);
     }
-  creatMarkers(shops);
 })
 .catch(err => console.log(err));
 
@@ -26,8 +25,8 @@ function getPlaceDetails(shop) {
     let lnglat = shop.location.split(',');
     shop.lng = parseFloat(lnglat[0]);
     shop.lat = parseFloat(lnglat[1]);
-
   })
+  .then(creatMarkers(shops))
   .catch(err => console.log(err));
 }
 
