@@ -2,7 +2,7 @@ let shops = [];
 
 fetch('data/michelin_shanghai.json')
 .then(res => res.json())
-.then(function(results) {
+.then(results => {
   shops = results.michelin_shanghai;
   for (shop of shops) {
     getPlaceDetails(shop);
@@ -26,7 +26,7 @@ function getPlaceDetails(shop) {
     shop.lng = parseFloat(lnglat[0]);
     shop.lat = parseFloat(lnglat[1]);
   })
-  .then(creatMarkers(shops))
+  .then(createMarkers(shop))
   .catch(err => console.log(err));
 }
 
@@ -40,22 +40,19 @@ function initMap() {
 
 const markers = [];
 
-function creatMarkers(places) {
-  console.log(places)//Array
-  for(let i = 0; i < places.length; i++) {
-    let lng = places[i].lng;
-    let lat = places[i].lat;
-    console.log(lng);//undefined?
+function createMarkers(shop) {
+  console.log(shop)
+    let lng = shop.lng;
+    let lat = shop.lat;
     const marker = new AMap.Marker({
         icon: "http://webapi.amap.com/theme/v1.3/markers/n/mark_b.png",
         position: [lng, lat]
       });
-
     markers.push(marker);
 
   }
 }
 
 
-
+initMap();
 //ko.appplyBindings(new AppViewModel());
