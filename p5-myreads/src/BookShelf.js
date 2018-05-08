@@ -1,7 +1,14 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Book from './Book'
 
 class BookShelf extends React.Component {
+  static propTypes = {
+    title: PropTypes.string.isRequired,
+    books: PropTypes.array.isRequired,
+    onSelect: PropTypes.func.isRequired
+  }
+
   render() {
     return (
       <div className="bookshelf">
@@ -11,9 +18,9 @@ class BookShelf extends React.Component {
             {this.props.books.map((book) => (
               <li key={book.id}>
                 <Book
-                  book={book}
+                  data={book}
                   key={book.id}
-                  click={this.props.click}
+                  onSelect={this.props.onSelect}
                 />
               </li>
             ))}
