@@ -49,8 +49,6 @@ function createMarkers(shop) {
         position: [lng, lat]
       });
     markers.push(marker);
-
-  }
 }
 
 
