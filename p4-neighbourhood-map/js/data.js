@@ -1,5 +1,3 @@
-const fs = require('fs');
-
 function initData() {
   const names = ['唐阁','Ultraviolet','8 ½ Otto e Mezzo Bombana','喜粤8号','御宝轩',
   '乔尔‧卢布松美食坊','逸龙阁','雍福会','Bo Shanghai','大董餐饮（环贸iapm）','大董海参店 (越洋广场)',
@@ -29,23 +27,6 @@ function initData() {
 
 
   }
-
-  function getPlaceDetails(name) {
-    fetch(`http://restapi.amap.com/v3/place/text?keywords=${name}&key=c835e23dde6f8ec7b42c02127bbed0e4&city=shanghai&output=json&offset=20&page=1&extensions=all`
-    ).then(res => res.json())
-    .then(placeDetails => {
-      let addr = placeDetails.pois[0].address;
-      let location = placeDetails.pois[0].location;
-      let tel = placeDetails.pois[0].tel;
-      let id = placeDetails.pois[0].id;
-      let img = placeDetails.pois[0].photos[0].url;
-      let rating = placeDetails.pois[0].biz_ext.rating;
-      let cost = placeDetails.pois[0].biz_ext.cost;
-
-    }).then(writeData)
-    .catch(err => console.log(err));
-  }
-
   //console.log(michelinSHH);
   function writeData() {
     fs.writeFileSync('data/michelin_shanghai.json',JSON.stringify(results));
