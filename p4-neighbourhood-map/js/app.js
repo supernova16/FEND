@@ -52,5 +52,4 @@ function createMarkers(shop) {
 }
 
 
-initMap();
 //ko.appplyBindings(new AppViewModel());
