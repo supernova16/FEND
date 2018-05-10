@@ -1,6 +1,5 @@
 let places = [];
 
-
 function initData() {
   let promiseArray =[];
   const names = ['唐阁','Ultraviolet','8 ½ Otto e Mezzo Bombana','喜粤8号','御宝轩',

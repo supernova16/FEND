@@ -23,7 +23,8 @@ https://favicon.io/emoji-favicons
 
 - [Google Map Api 文档](https://developers.google.com/maps/documentation/javascript/)
 - [Foursquare Api 文档](https://developer.foursquare.com/docs/api)
-
+设置锚点的三种方法 https://www.jianshu.com/p/5cab8c2608ce
+js导航定位指定位置https://blog.csdn.net/c13_tianming/article/details/71170906
 
 
 米其林官网上没有上海的地图：https://guide.michelin.com/tw/taipei，中文官网也无法访问:)
