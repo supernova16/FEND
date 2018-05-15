@@ -10,6 +10,7 @@ function initData() {
 
   let name = '';
   let stars = 0;
+  let starUrl = ''
 
   const michelinSHH = [];
   const results = {'michelin_shanghai': michelinSHH};
@@ -19,13 +20,16 @@ function initData() {
     name = names[i];
     if (i < 2) {
       stars = 3;
+      starUrl ='img/3-star.svg';
     } else if (i < 8) {
       stars = 2;
+      starUrl ='img/2-star.svg';
     } else {
       stars = 1;
+      starUrl ='img/1-star.svg';
     }
 
-    michelinSHH.push(Object.assign({name,stars}));
+    michelinSHH.push(Object.assign({name,stars,starUrl}));
 
   }
   //console.log(michelinSHH);
@@ -42,7 +46,7 @@ function initData() {
   }
 
   function getPlaceDetails(place, resolve, reject) {
-    fetch(`http://restapi.amap.com/v3/place/text?keywords=${place.name}&key=2466d94d165232a59816a964bcd21c41&city=shanghai&output=json&offset=20&page=1&extensions=all`
+    fetch(`http://restapi.amap.com/v3/place/text?keywords=${place.name}&key=c835e23dde6f8ec7b42c02127bbed0e4&city=shanghai&output=json&offset=20&page=1&extensions=all`
     )
     .then(res => res.json())
     .then(placeDetails => {
@@ -52,7 +56,7 @@ function initData() {
       place.id = placeDetails.pois[0].id;
       place.img = placeDetails.pois[0].photos[0].url;
       place.rating = placeDetails.pois[0].biz_ext.rating;
-      place.cost = placeDetails.pois[0].biz_ext.cost;
+      place.cost = parseInt(placeDetails.pois[0].biz_ext.cost);
       place.type = placeDetails.pois[0].type.split(';');
       place.adname = placeDetails.pois[0].adname;
 
