@@ -53,10 +53,23 @@ function initData() {
       place.img = placeDetails.pois[0].photos[0].url;
       place.rating = placeDetails.pois[0].biz_ext.rating;
       place.cost = placeDetails.pois[0].biz_ext.cost;
+      place.type = placeDetails.pois[0].type.split(';');
+      place.adname = placeDetails.pois[0].adname;
 
       let lnglat = place.location.split(',');
       place.longitude = lnglat[0];
       place.latitude = lnglat[1];
+
+      if (place.name === '利苑 (国金中心)') {
+        place.type[2] = '广东菜(粤菜)';
+      }
+
+      if (place.name === '泰安门') {
+        place.type[2] = '西餐';
+        place.rating = '4.5';
+        place.cost = '1726';
+      }
+
       resolve();
     })
     .catch(err => {

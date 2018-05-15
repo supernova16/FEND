@@ -7,21 +7,30 @@
     <link rel="short icon" href="img/1-star.svg"/>
     <link rel="icon" href="img/1-star.svg" type="image/ico" />
     <link rel="stylesheet" href="css/style.css" />
+    <!--引入 knockout.js -->
     <script src="https://cdn.bootcss.com/knockout/3.4.2/knockout-debug.js"></script>
-    <script src="http://webapi.amap.com/maps?v=1.4.6&key=e95f8c02c563427410acc5d987f8583d"></script>
-
+    <!--引入高德地图JSAPI -->
+    <script src="http://webapi.amap.com/maps?v=1.4.6&key=e95f8c02c563427410acc5d987f8583d&plugin=AMap.AdvancedInfoWindow"></script>
+    <!--引入UI组件库（1.0版本） -->
+    <script src="//webapi.amap.com/ui/1.0/main.js"></script>
   </head>
 
   <body>
-    <div id="map-name">
-      <h1>上海米其林星级餐厅</h1>
-      <p>
-      </p>
-
-    </div>
-
     <div id="sidebar">
-      <input form="jdkfjd" />
+      <div id="map-name">
+        <h1>上海米其林星级餐厅</h1>
+      </div>
+      <input id='search-bar' type="text" placeholder="搜索餐厅名字" data-bind='value: inputValue'/>
+      <div id='place-list'>
+        <ul data-bind='foreach: filteredList'>
+          <li data-bind="click: $parent.clickItem">
+            <h3 data-bind='text: placeName'>
+              <span><img data-bind='src: place-star' height='15' /></span>
+            </h3>
+            <p data-bind='html: placeInfo'></p>
+          </li>
+        </ul>
+      </div>
     </div>
 
     <div id="map">

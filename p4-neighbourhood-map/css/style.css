@@ -2,6 +2,15 @@ html,body {
   height:100%;
   margin:0px;
 }
+
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 5px;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #eb4343;
+}
+
 #sidebar {
   position:absolute;
   top:0px;
@@ -9,7 +18,18 @@ html,body {
   width: 300px;
   height: 100%;
   z-index: 1;
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: #FFF;
+  border-right: 1px solid #b5b5b6;
+}
+
+ul {
+  padding: 0;
+}
+
+li {
+  border-bottom:  1px solid #b5b5b6;
+  list-style: none;
+  padding: 5px 10px;
 }
 
 #map {
@@ -18,11 +38,17 @@ html,body {
   z-index: 0;
 }
 
-#map-name {
-  position: absolute;
-  z-index: 2;
-}
-
 h1 {
   font-size: 20px;
+}
+
+h3 {
+  font-size: 18px;
+  margin: 5px 10px;
+}
+
+p {
+  font-size: 14px;
+  color: #949293;
+  margin: 5px 10px;
 }
