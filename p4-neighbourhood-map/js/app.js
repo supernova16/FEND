@@ -47,8 +47,8 @@ let appViewModel = function() {
   //console.log('places', places)
   //创建 place 实例
   places.forEach(function(place) {
-    let place = new Place(place, map);
-    self.placeList.push(place);
+    let placeToAdd = new Place(place, map);
+    self.placeList.push(placeToAdd);
   });
 
 
