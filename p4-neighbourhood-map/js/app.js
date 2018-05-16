@@ -17,7 +17,7 @@ let Place = function(place, map) {
                         <p>Tel：${place.tel}</p>`;
   this.marker = new AMap.Marker({
         position: lngLat,
-        title: self.title,
+        title: self.title(),
         clickable: true,
         icon: 'img/marker.png',
         animation: 'AMAP_ANIMATION_DROP',
@@ -36,25 +36,7 @@ let Place = function(place, map) {
     map.panTo(lngLat.offset(-500, 1000));//将当前地图中心设为 marker 位置,并偏移
     map.setZoom(15);//设置地图缩放级别
   }
-
-  this.visible = ko.computed(function() {
-    if (inputValue().length > 0){
-      infoWindow.close();
-      map.panTo([121.429524, 31.18 ]);
-      map.setZoom(12);
-      return (self.title().toLowerCase().indexOf(inputValue().toLowerCase()) > -1);
-    } else {
-      return true;
-    }
-  });
  
-  this.setMarker = ko.computed(function() {
-    if (self.visible()) {
-      self.marker.setMap(map);
-    } else {
-      self.marker.setMap(null);
-    }
-  });
 }
 
 let appViewModel = function() {
@@ -64,20 +46,35 @@ let appViewModel = function() {
   this.placeList = ko.observableArray([]);
 
   //console.log('places', places)
+  //创建 place 实例 
   places.forEach(function(place) {
     let placeToAdd = new Place(place, map);
     self.placeList.push(placeToAdd);
   });
 
-  console.log('muqianweizhi');
-
+  
+  //根据搜索结果进行筛选
   this.filterList = ko.computed(function() {
     let filteredList = [];
-    self.placeList().forEach(function(place) {
-      if (place.visible()) {
-        filteredList.push(place);
-      }
+    if (inputValue().length > 0) {
+      infoWindow.close();
+      map.panTo([121.429524, 31.18 ]);
+      map.setZoom(12);
+
+      filteredList = ko.utils.arrayFilter(self.placeList(), function(place) {
+        place.marker.hide();
+        return place.title().toLowerCase().indexOf(inputValue().toLowerCase()) >= 0;
+      });
+
+    } else {
+      filteredList = self.placeList();//未输入搜索关键词状态
+      
+    }
+
+    filteredList.forEach(function(place) {
+      place.marker.show();
     })
+    
     return filteredList;
   });
 
@@ -96,32 +93,9 @@ let appViewModel = function() {
     }
   }
 
-  //天气 api
-  this.weather = ko.observable();
-
-  let UID = "U9CCFD2375"; 
-  let KEY = "bv0untlpj9upazkm"; 
-  let API = "http://api.seniverse.com/v3/weather/now.json"; 
-  let LOCATION = "shanghai"; 
-  // 获取当前时间戳
-  let ts = Math.floor((new Date()).getTime() / 1000);
-  // 构造验证参数字符串
-  let str = "ts=" + ts + "&uid=" + UID;
-  // 使用 HMAC-SHA1 方式，以 API 密钥（key）对上一步生成的参数字符串（raw）进行加密
-  // 并将加密结果用 base64 编码，并做一个 urlencode，得到签名 sig
-  let sig = CryptoJS.HmacSHA1(str, KEY).toString(CryptoJS.enc.Base64);
-  sig = encodeURIComponent(sig);
-  str = str + "&sig=" + sig;
-  // 构造最终请求的 url
-  let url = API + "?location=" + LOCATION + "&" + str + "&callback=foo";
-
-  fetch(url)
-  .then(res => {
-    console.log(res);
-    self.weather = `${res.results.now.temperature} °C | ${res.results.now.text} `
-  })
-  .catch(e => console.log(e));
-     
+  //天气数据
+  //console.log(weatherData);
+  this.weather = ko.observable(`${weatherData.data.qw} ℃ | ${weatherData.data.tq}`); 
 
 }
 
@@ -153,10 +127,11 @@ function initMap() {
   });
 }
 
-function start() {
-  initMap();
+function startKo() {
   ko.applyBindings(new appViewModel());
 }
 
-//等地点数据全部获取完整后，再开始运行
-Promise.all(initData()).then(start);
+initMap();
+
+//等和天气地点数据全部获取完整后，再开始运行绑定
+Promise.all(initData()).then(startKo);

@@ -1,4 +1,5 @@
 let places = [];
+let weatherData;
 
 function initData() {
   let promiseArray =[];
@@ -46,7 +47,7 @@ function initData() {
   }
 
   function getPlaceDetails(place, resolve, reject) {
-    fetch(`http://restapi.amap.com/v3/place/text?keywords=${place.name}&key=c835e23dde6f8ec7b42c02127bbed0e4&city=shanghai&output=json&offset=20&page=1&extensions=all`
+    fetch(`http://restapi.amap.com/v3/place/text?keywords=${place.name}&key=c4aecb3fe26e4e79ddb49a9043a283d2&city=shanghai&output=json&offset=20&page=1&extensions=all`
     )
     .then(res => res.json())
     .then(placeDetails => {
@@ -81,6 +82,27 @@ function initData() {
       console.log(err)
     });
   }
+
+  /**
+   * 天气 API
+   */
+  function getWeather(resolve, reject) {
+    fetch('http://api.yytianqi.com/observe?city=CH020100&key=1ce58uw5ekkgdeng')
+    .then(res => res.json())
+    .then(res => {
+      weatherData = res;
+
+      resolve();
+    })
+    .catch(err => {
+      reject();
+      console.log(err);
+    });
+  }
+
+  promiseArray.push(new Promise(function(resolve, reject) {
+      getWeather(resolve, reject);
+    }))
 
   return promiseArray;
 

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=500, initial-scale=1">
     <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <!--<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">-->
     <title>上海米其林星级餐厅 2018</title>
     <link rel="icon" type="image/png" href="img/favicon-1.png" />
     <link rel="stylesheet" href="css/style.css" />
@@ -14,8 +14,6 @@
     <script src="http://webapi.amap.com/maps?v=1.4.6&key=e95f8c02c563427410acc5d987f8583d&plugin=AMap.AdvancedInfoWindow"></script>
     <!--引入UI组件库（1.0版本） -->
     <script src="//webapi.amap.com/ui/1.0/main.js"></script>
-
-    <script type="text/javascript" src="js/hmac-sha1.js"></script>
   </head>
 
   <body>
@@ -33,14 +31,14 @@
       </div>
       <button title="点击显示／隐藏侧边栏" id="nav-button" data-bind="click: navClick">
         <i class="fa fa-angle-double-right"></i>
-      </button>     
+      </button>
     </div>
 
     <div id="map"></div>
 
     <div id='weather-container'>
       <p>上海实时天气</p>
-      <p data-bind='text: weather'></p>
+      <p data-bind='html: weather'></p>
     </div>
 
     <script src='js/data.js'></script>
