@@ -1,6 +1,6 @@
 
 let inputValue = ko.observable('');
-let infoWindow; 
+let infoWindow;
 let map;
 
 let Place = function(place, map) {
@@ -36,23 +36,22 @@ let Place = function(place, map) {
     map.panTo(lngLat.offset(-500, 1000));//将当前地图中心设为 marker 位置,并偏移
     map.setZoom(15);//设置地图缩放级别
   }
- 
+
 }
 
 let appViewModel = function() {
   let self = this;
 
-  this.isDrawed = ko.observable(false);
   this.placeList = ko.observableArray([]);
 
   //console.log('places', places)
-  //创建 place 实例 
+  //创建 place 实例
   places.forEach(function(place) {
-    let placeToAdd = new Place(place, map);
-    self.placeList.push(placeToAdd);
+    let place = new Place(place, map);
+    self.placeList.push(place);
   });
 
-  
+
   //根据搜索结果进行筛选
   this.filterList = ko.computed(function() {
     let filteredList = [];
@@ -68,19 +67,18 @@ let appViewModel = function() {
 
     } else {
       filteredList = self.placeList();//未输入搜索关键词状态
-      
+
     }
 
     filteredList.forEach(function(place) {
       place.marker.show();
     })
-    
+
     return filteredList;
   });
 
 
   this.resultClick = function(place, event) {
-    self.isDrawed(false);
     place.showInfoWindow();
   }
 
@@ -95,7 +93,7 @@ let appViewModel = function() {
 
   //天气数据
   //console.log(weatherData);
-  this.weather = ko.observable(`${weatherData.data.qw} ℃ | ${weatherData.data.tq}`); 
+  this.weather = ko.observable(`${weatherData.data.qw} ℃ | ${weatherData.data.tq}`);
 
 }
 
