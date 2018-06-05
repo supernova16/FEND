@@ -28,11 +28,11 @@ I modified `jasmine/spec/feeedreader.js` in order to test the following:
 
 ## Online testing
 
-You can click this url to view the testing online: https://supernova16.github.io/FEND/p3-feedreader-testing/.(Please allow browser to load unsafe script)
+You can click this url to view the testing online: https://supernova16.github.io/FEND/p3-feedreader-testing/.(Please allow browser to load unsafe script)
 
 A successful test will display:
 
-![](http://p0837nnqr.bkt.clouddn.com/UC20180408_204816.png)
+![](http://p0837nnqr.bkt.clouddn.com/UC20180408_204816.png)
 
 
 
