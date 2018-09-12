@@ -11,7 +11,7 @@ function initData() {
 
   let name = '';
   let stars = 0;
-  let starUrl = ''
+  let starUrl = '';
 
   const michelinSHH = [];
   const results = {'michelin_shanghai': michelinSHH};
