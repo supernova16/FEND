@@ -11,10 +11,10 @@ It is a memory game (matching game) completed by myself.
 
 ## How to play
 
-- click the card
-- find the same cards
+- Click each card
+- Find the same cards
 - When all the cards match, you win
-- you can restart at any times
+- You can restart at any time
 
 ## Play it online
 
