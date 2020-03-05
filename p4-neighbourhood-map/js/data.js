@@ -3,36 +3,41 @@ let weatherData;
 
 function initData() {
   let promiseArray =[];
-  const names = ['唐阁','Ultraviolet','8 ½ Otto e Mezzo Bombana','喜粤8号','御宝轩',
-  '乔尔‧卢布松美食坊','逸龙阁','雍福会','Bo Shanghai','大董餐饮（环贸iapm）','大董海参店 (越洋广场)',
-  '大蔬无界 (外滩)','福和慧','苏浙总会','Jean Georges','金轩','老干杯','老正兴',
-  '南麓‧浙里 (四川中路)','利苑 (环贸广场)','利苑 (国金中心)','鹅夫人 (莘庄)','斐霓丝',
-  '家全七福 (嘉里中心)' ,'迷上海','艾利爵士','泰安门','新荣记 (上海广场)','甬府' ,'雍颐'];
-
+  const oneStar = ['菁禧荟 （长宁）','宝丽轩','成隆行蟹王府 （黄浦）','大董 （徐汇）','大董海参店 （静安）',
+  'Da Vittorio','福和慧','Il Ristorante - Niko Romito','苏浙总会','Jean Georges','金轩','老正兴 （黄浦）',
+  'Le Comptoir de Pierre Gagnaire','南麓‧浙里 （黄浦）','利苑 （浦东新区）','LEI GARDEN(环贸iapm)','莱美露滋',
+  '明阁','鹿园 （长宁）','鹿园MOOSE(浦东店)','斐霓丝','家全七福 （静安）','迷上海','艾利爵士','唐阁','大蔬无界 （黄浦）',
+  '新荣记 （南京西路）','逸龙阁','甬府','雍颐庭','玉芝兰'];
+  const twoStar = ['喜粤8号 （汝南街）','御宝轩 （黄浦）','乔尔‧卢布松美食坊','8 ½ Otto e Mezzo Bombana','泰安门','新荣记 （南阳路）','雍福会'];
+  const threeStar = ['Ultraviolet by Paul Pairet'];
+  let michelinSHH = [];
+  //const results = {'michelin_shanghai': michelinSHH};
+  
   let name = '';
   let stars = 0;
   let starUrl = '';
 
-  const michelinSHH = [];
-  const results = {'michelin_shanghai': michelinSHH};
-
-
-  for(let i =0;i < names.length; i++){
-    name = names[i];
-    if (i < 2) {
-      stars = 3;
-      starUrl ='img/3-star.svg';
-    } else if (i < 8) {
-      stars = 2;
-      starUrl ='img/2-star.svg';
-    } else {
-      stars = 1;
-      starUrl ='img/1-star.svg';
-    }
-
+  for(let i = 0; i < threeStar.length; i++){
+    name = threeStar[i];
+    stars = 3;
+    starUrl ='img/3-star.svg';
     michelinSHH.push(Object.assign({name,stars,starUrl}));
-
   }
+
+  for(let i = 0; i < twoStar.length; i++){
+    name = twoStar[i];
+    stars = 2;
+    starUrl ='img/2-star.svg';
+    michelinSHH.push(Object.assign({name,stars,starUrl}));
+  }
+  
+  for(let i = 0; i < oneStar.length; i++){
+    name = oneStar[i];
+    stars = 1;
+    starUrl ='img/1-star.svg';
+    michelinSHH.push(Object.assign({name,stars,starUrl}));
+  }
+
   //console.log(michelinSHH);
   /*
     fs.writeFileSync('data/michelin_shanghai.json',JSON.stringify(results));
@@ -55,7 +60,7 @@ function initData() {
       place.location = placeDetails.pois[0].location;
       place.tel = placeDetails.pois[0].tel;
       place.id = placeDetails.pois[0].id;
-      place.img = placeDetails.pois[0].photos[0].url;
+      place.img = placeDetails.pois[0].photos[0];
       place.rating = placeDetails.pois[0].biz_ext.rating;
       place.cost = parseInt(placeDetails.pois[0].biz_ext.cost);
       place.type = placeDetails.pois[0].type.split(';');
@@ -65,14 +70,16 @@ function initData() {
       place.longitude = lnglat[0];
       place.latitude = lnglat[1];
 
-      if (place.name === '利苑 (国金中心)') {
-        place.type[2] = '广东菜(粤菜)';
+      if (place.name === '泰安门') {
+        place.type[2] = '西餐';
+      }
+      if (place.img == undefined){
+        //console.log(place);
+        place.img = {url:'img/defaul_img.jpg'};
       }
 
       if (place.name === '泰安门') {
         place.type[2] = '西餐';
-        place.rating = '4.5';
-        place.cost = '1726';
       }
 
       resolve();

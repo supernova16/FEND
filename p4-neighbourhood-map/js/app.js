@@ -9,8 +9,8 @@ let Place = function(place, map) {
   this.title = ko.observable(place.name);
   this.starUrl = ko.observable(place.starUrl);
   this.info = ko.observable(`<h3>${place.name} <span><img src=${place.starUrl} height='15'/></span></h3>
-                        <p>${place.type[2]} · ${place.adname} · 人均 ${place.cost} </p>`);
-  this.content = `<img class='place-img' src='${place.img}' width='320' />
+                        <p>${place.type[2]} · ${place.adname} · 人均 ${place.cost}</p>`);
+  this.content = `<img class='place-img' src='${place.img.url}' width='320' />
                         <h3>${place.name} <span><img src=${place.starUrl} height='15'/></span></h3>
                         <p>${place.type[2]} · ${place.adname} · 人均 ${place.cost} · 评分 ${place.rating}</p>
                         <p>地址：${place.addr}</p>
@@ -44,7 +44,7 @@ let appViewModel = function() {
 
   this.placeList = ko.observableArray([]);
 
-  //console.log('places', places)
+ console.log('places', places)
   //创建 place 实例
   places.forEach(function(place) {
     let placeToAdd = new Place(place, map);

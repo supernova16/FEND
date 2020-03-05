@@ -1,12 +1,12 @@
-# Neighbourhood Map - 上海米其林星级餐厅地图 2018
+# Neighbourhood Map - 上海米其林星级餐厅地图 Michelin Shanghai Map
 
 ## Intro
 
-街区地图项目练习，根据米其林官方公布的上海米其林星际餐厅2018名单制作成的地图。
+街区地图项目练习，根据米其林官方公布的上海米其林星际餐厅名单制作成的地图。
 
 是一个对以下内容学习的练习项目：
 
-- Goole Map API
+- Goole Map API （使用高德地区代替）
 - AJAX
 - Knockout JS ／ MVVM
 
@@ -36,10 +36,11 @@
 
 ## References & Data Sources
 
-- Google Map Api 文档: https://developers.google.com/maps/documentation/javascript/
+- [Google Map Api 文档: https://developers.google.com/maps/documentation/javascript/
 - 高德地图 API 文档: http://lbs.amap.com/api/javascript-api/summary/
 - 设置锚点的三种方法: https://www.jianshu.com/p/5cab8c2608ce
 - js导航定位指定位置: https://blog.csdn.net/c13_tianming/article/details/71170906
 - Knockout 部分代码的参考，来自 poblue: https://poblue.github.io/Neighborhood-Map/
 - 丫丫天气 API : http://www.yytianqi.com/api.html
-- 米其林官网: https://guide.michelin.com/tw/taipei
+- [《米其林指南上海 2020》](https://guide.michelin.com/sg/zh_CN/article/news-and-views/michelin-guide-shanghai-2020-selection)
+
