@@ -75,11 +75,7 @@ function initData() {
       }
       if (place.img == undefined){
         //console.log(place);
-        place.img = {url:'img/defaul_img.jpg'};
-      }
-
-      if (place.name === '泰安门') {
-        place.type[2] = '西餐';
+        place.img = {url:'img/default_img.jpg'};
       }
 
       resolve();
